@@ -19,7 +19,9 @@ public class Interpreteur {
      * Supprime la dernière commande de l'historique.
      */
     public void undo() {
-        this.Commandes.remove(this.Commandes.size()-1);
+        if(!this.Commandes.isEmpty()) {
+            this.Commandes.remove(this.Commandes.size() - 1);
+        }
     }
 
     /**
@@ -33,6 +35,15 @@ public class Interpreteur {
     /** Ajout d'une commande dans l'historique. */
     public void add(Icommande c) {
         this.Commandes.add(c);
+    }
+
+    /**
+     * Check si l'historique est vide.
+     * @return vrai ou faux.
+     */
+    public boolean checkEmpty() {
+        if(this.Commandes.isEmpty()) return true;
+        else return false;
     }
 
 
