@@ -3,8 +3,6 @@ package florianldm;
 public class CommandeOperation implements IcommandeRPN {
     /** MoteurRPN pour lequel on appelle des méthodes. */
     private MoteurRPN moteur;
-    /** Nom de la commande. */
-    private final String nom = "CommandeSaveOperation";
     /** Opération à effectuer. */
     private Operation operation;
 
@@ -31,6 +29,6 @@ public class CommandeOperation implements IcommandeRPN {
      * @return nom commande.
      */
     public String getNom() {
-        return nom;
+        return "CommandeSaveOperation";
     }
 }

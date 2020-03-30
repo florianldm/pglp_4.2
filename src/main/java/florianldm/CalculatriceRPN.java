@@ -1,47 +1,84 @@
 package florianldm;
-
+import java.util.Scanner;
 import java.util.Stack;
 
-public class CalculatriceRPN {
-    public static void main() {
+final class CalculatriceRPN {
+    /**
+     * Programme principal.
+     */
+    private CalculatriceRPN() {
+
+    }
+
+    /**
+     * Main.
+     */
+    static void main() {
         double nombre;
-        String op;
+        String op = "";
         Operation operation = Operation.PLUS;
-        SaisieRPN S = new SaisieRPN();
-
-        System.out.println("Saisir un nombre");
-        nombre = S.getScanner().nextDouble();
-
+        SaisieRPN s = new SaisieRPN();
         MoteurRPN m = new MoteurRPN();
-        IcommandeRPN iRPN = new CommandeSaveOperande(m, nombre);
-        ExecMoteurRPN eRPN = new ExecMoteurRPN(iRPN);
+        Interpreteur i = new Interpreteur();
 
-        //Sauvegarde de l'opérande.
-        S.M.declencheAction();
-
-        System.out.println("Saisir le type d'operation");
-        op = S.getScanner2().nextLine();
-
-        System.out.println("Saisir le deuxieme nombre");
-        nombre = S.getScanner().nextDouble();
-        IcommandeRPN iRPN2 = new CommandeSaveOperande(m, nombre);
-
-        S.M.declencheAction();
-
-        if (op.equals("-")) operation = Operation.MOINS;
-        else if (op.equals("+")) operation = Operation.PLUS;
-        else if (op.equals("*") || op.equals("x")) operation = Operation.MULT;
-        else if (op.equals("/")) operation = Operation.DIV;
-        else {
-            System.out.println("Erreur");
-            throw new IllegalArgumentException("Opérateur non valide");
+        System.out.println("Exemple d'une opération simple !");
+        System.out.println("Entrer 1 pour lancer / quit pour quitter");
+        String rep;
+        Scanner scan = new Scanner(System.in, "UTF-8");
+        rep = scan.nextLine();
+        if (rep.equals("quit")) {
+            Icommande quit = new CommandeExit(i);
+            quit.execute();
         }
 
-        IcommandeRPN iRPNop = new CommandeOperation(m, operation);
-        iRPNop.execute();
+        System.out.println("Saisir un nombre");
+        nombre = s.getScanner().nextDouble();
+        IcommandeRPN iRPN = new CommandeSaveOperande(m, nombre);
 
-        IcommandeRPN iRPNreturn = new CommandeReturnOperande(m);
-        Stack<Double> s = m.getOperandes();
-        System.out.println(s.pop());
+        //Sauvegarde de l'opérande.
+        s.i = iRPN;
+        s.i.execute();
+
+        while (!op.equals("quit")) {
+            System.out.println("Saisir le type d'operation");
+            op = s.getScanner2().nextLine();
+
+            if (!op.equals("quit")) {
+                System.out.println("Saisir le deuxieme nombre");
+                nombre = s.getScanner().nextDouble();
+                IcommandeRPN iRPN2 = new CommandeSaveOperande(m, nombre);
+
+                s.i = iRPN2;
+                s.i.execute();
+
+                switch (op) {
+                    case "-":
+                        operation = Operation.MOINS;
+                        break;
+                    case "+":
+                        operation = Operation.PLUS;
+                        break;
+                    case "*":
+                    case "x":
+                        operation = Operation.MULT;
+                        break;
+                    case "/":
+                        operation = Operation.DIV;
+                        break;
+                    default:
+                        System.out.println("Erreur");
+                        throw new IllegalArgumentException("Opé non valide");
+                }
+
+                IcommandeRPN iRPNop = new CommandeOperation(m, operation);
+                iRPNop.execute();
+
+                //IcommandeRPN iRPNreturn = new CommandeReturnOperande(m);
+                Stack<Double> s1 = m.getOperandes();
+                System.out.println("Résultat: " + s1.toString());
+            }
+        }
+
+
     }
 }

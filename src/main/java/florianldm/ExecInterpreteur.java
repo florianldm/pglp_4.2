@@ -13,7 +13,7 @@ public class ExecInterpreteur {
      * Constructeur (rôle du client).
      * @param i1 Invoke.
      */
-    public ExecInterpreteur(Icommande i1) {
+    public ExecInterpreteur(final Icommande i1) {
         this.i = i1;
     }
 

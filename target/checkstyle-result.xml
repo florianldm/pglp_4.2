@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="8.29">
+<file name="C:\Users\ledem\Desktop\INFO\M1\PGLP\pglp_4.2\src\main\java\florianldm\SaisieRPN.java">
+<error line="10" column="18" severity="error" message="Variable &apos;i&apos; must be private and have accessor methods." source="com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck"/>
+</file>
+</checkstyle>

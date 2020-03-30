@@ -3,14 +3,12 @@ package florianldm;
 public class CommandeExit implements Icommande {
     /** Interpreteur pour lequel on appelle des méthodes. */
     private Interpreteur interpreteur;
-    /** Nom de la commande. */
-    public final String nom = "CommandeExit";
 
     /**
      * Constructeur de la commande.
      * @param i l'interpreteur.
      */
-    public CommandeExit(Interpreteur i) {
+    public CommandeExit(final Interpreteur i) {
         this.interpreteur = i;
     }
 
@@ -22,5 +20,13 @@ public class CommandeExit implements Icommande {
     public void execute() {
         this.interpreteur.quit();
         this.interpreteur.add(this);
+    }
+
+    /**
+     * Getter.
+     * @return nom commande.
+     */
+    public String getNom() {
+        return "CommandeExit";
     }
 }

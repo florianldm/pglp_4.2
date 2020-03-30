@@ -1,27 +1,27 @@
 package florianldm;
 import java.util.Scanner;
 
-public class SaisieRPN {
+final class SaisieRPN {
     /** Scanner. */
     private Scanner scanner;
     /** Scanner2. */
     private Scanner scanner2;
     /** MoteurRPN. */
-    MoteurRPN M = new MoteurRPN();
+    IcommandeRPN i;
 
     /**
      * Constructeur.
      */
-    public SaisieRPN(){
-        this.scanner = new Scanner(System.in);
-        this.scanner2 = new Scanner(System.in);
+    SaisieRPN() {
+        this.scanner = new Scanner(System.in, "UTF-8");
+        this.scanner2 = new Scanner(System.in, "UTF-8");
     }
 
     /**
      * Getter.
      * @return scanner.
      */
-    public Scanner getScanner() {
+    Scanner getScanner() {
         return scanner;
     }
 
@@ -29,7 +29,7 @@ public class SaisieRPN {
      * Getter.
      * @return scanner2.
      */
-    public Scanner getScanner2() {
+    Scanner getScanner2() {
         return scanner2;
     }
 }

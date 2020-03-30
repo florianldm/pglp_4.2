@@ -3,14 +3,12 @@ package florianldm;
 public class CommandeUndo implements Icommande {
     /** L'interpreteur. */
     private Interpreteur interpreteur;
-    /** Nom de la commande. */
-    public final String nom = "CommandeUndo";
 
     /**
      * Constructeur de la commande.
      * @param i l'interpreteur.
      */
-    public CommandeUndo(Interpreteur i) {
+    public CommandeUndo(final Interpreteur i) {
         this.interpreteur = i;
     }
 
@@ -22,5 +20,13 @@ public class CommandeUndo implements Icommande {
     public void execute() {
         this.interpreteur.undo();
         this.interpreteur.add(this);
+    }
+
+    /**
+     * Getter.
+     * @return nom commande.
+     */
+    public String getNom() {
+        return "CommandeUndo";
     }
 }

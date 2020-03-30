@@ -6,21 +6,21 @@ import java.util.ArrayList;
  * Receiver.
  */
 public class Interpreteur {
-    /** Liste des commandes utilisées*/
-    private ArrayList<Icommande>Commandes;
+    /** Liste des commandes utilisées.*/
+    private ArrayList<Icommande> commandes;
 
     /**
      * Constructeur.
      */
     public Interpreteur() {
-        Commandes = new ArrayList<>();
+        commandes = new ArrayList<>();
     }
     /**
      * Supprime la dernière commande de l'historique.
      */
     public void undo() {
-        if(!this.Commandes.isEmpty()) {
-            this.Commandes.remove(this.Commandes.size() - 1);
+        if (!this.commandes.isEmpty()) {
+            this.commandes.remove(this.commandes.size() - 1);
         }
     }
 
@@ -32,9 +32,11 @@ public class Interpreteur {
         System.exit(1);
     }
 
-    /** Ajout d'une commande dans l'historique. */
-    public void add(Icommande c) {
-        this.Commandes.add(c);
+    /** Ajout d'une commande dans l'historique.
+     * @param c commande à ajouter dans historique.
+     */
+    public void add(final Icommande c) {
+        this.commandes.add(c);
     }
 
     /**
@@ -42,8 +44,7 @@ public class Interpreteur {
      * @return vrai ou faux.
      */
     public boolean checkEmpty() {
-        if(this.Commandes.isEmpty()) return true;
-        else return false;
+        return this.commandes.isEmpty();
     }
 
 

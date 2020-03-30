@@ -1,13 +1,23 @@
 package florianldm;
 
 /**
- * Hello world!
+ * Hello world!.
  *
  */
-public class App 
-{
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello World!" );
+final class App {
+
+    /**
+     * Constructeur.
+     */
+    private App() {
+
+    }
+
+    /**
+     * Main.
+     * @param args argument.
+     */
+    public static void main(final String[] args) {
+        CalculatriceRPN.main();
     }
 }
